@@ -18,7 +18,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 @RunWith(SpringRunner.class)
 @RestClientTest({TimeService.class})
 @AutoConfigureWebClient(registerRestTemplate = true)
-public class TimeServiceTest {
+public class SampleRestClientTest {
 
     @Autowired
     TimeService timeService;

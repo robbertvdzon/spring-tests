@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @JsonTest
-public class CustomerTest {
+public class SampleJsonTest {
 
     @Autowired
     private JacksonTester<Customer> json;

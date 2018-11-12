@@ -6,14 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class Controller1 {
+public class Controller2 {
 
-    @Autowired
-    TimeService timeService;
-
-    @GetMapping("/gettime")
-    public TimeDto getTime() {
-        return timeService.getTimeAsString();
+    @GetMapping("/getSampleCustomer")
+    public Customer getSampleCustomer() {
+        return new Customer("Robbert", 19);
     }
 
 }

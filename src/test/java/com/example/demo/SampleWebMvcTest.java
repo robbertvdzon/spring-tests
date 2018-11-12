@@ -14,13 +14,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(Controller1.class)
+@WebMvcTest
 /*
   WebMvcTest spins up all the spring MVC machinery, EXCEPT the actual Servlet container. The requests to the
   controller that is testes goes through the MockMvc object.
-  All injected beans must be mocked with @MockBean
  */
-public class Controller1Test {
+public class SampleWebMvcTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -33,6 +32,11 @@ public class Controller1Test {
         given(timeService.getTimeAsString()).willReturn(new TimeDto("19:03"));
 
         mockMvc.perform(get("/gettime")).andExpect(content().json("{\"time\": \"19:03\"}"));
+    }
+
+    @Test
+    public void test2() throws Exception {
+        mockMvc.perform(get("/getSampleCustomer")).andExpect(content().json("{\"name\": \"Robbert\"}"));
     }
 
 }

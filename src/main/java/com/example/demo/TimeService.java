@@ -29,7 +29,7 @@ public class TimeService {
         ResponseEntity<UtcDateTime> exchange = restTemplate.exchange(request, UtcDateTime.class);
 
 
-        Matcher matcher = Pattern.compile("\\d\\d:\\d\\d").matcher(exchange.getBody().currentDateTime);
+        Matcher matcher = Pattern.compile("\\d\\d:\\d\\d:\\d\\d").matcher(exchange.getBody().currentDateTime);
         if (matcher.find()) {
             return new TimeDto(matcher.group());
         }
