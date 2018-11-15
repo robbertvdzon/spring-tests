@@ -1,5 +1,6 @@
 package com.example.demo.controllerstests;
 
+import com.example.demo.Controller1;
 import com.example.demo.TimeService;
 import com.example.demo.model.TimeDto;
 import com.jayway.jsonpath.DocumentContext;
@@ -8,37 +9,23 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import io.restassured.response.ResponseOptions;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.context.WebApplicationContext;
 
 import static com.toomuchcoding.jsonassert.JsonAssertion.assertThatJson;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /*
- - Load complete spring environment, including the Servlet container
- - You can mock any bean in the system, using @MockBean
- - With the Autowired @WebApplicationContext, you can configure RestAssuredMockMvc
- - In your tests you can use RestAssuredMockMvc if you like to use the RestAssured syntax
+ - You can use RestAssured to test a controller without loading Spring
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class TestWithRestAssuredMockMvc {
+public class TestWithRestAssuredMockMvc2 {
 
-    @Autowired
-    WebApplicationContext context;
-
-    @MockBean
-    private TimeService timeService;
+    private TimeService timeService = mock(TimeService.class);
 
     @Before
     public void setup() {
-        RestAssuredMockMvc.webAppContextSetup(context);
+        RestAssuredMockMvc.standaloneSetup(new Controller1(timeService));
     }
 
     @Test

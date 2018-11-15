@@ -30,6 +30,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
  - The components that are not loaded needs to be mocked
  - You can use MockMvc to make requests using relative URL's
+
+ If you are looking to load your full application configuration and use MockMVC,
+ you should consider @SpringBootTest combined with @AutoConfigureMockMvc rather than this annotation.
+
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest
