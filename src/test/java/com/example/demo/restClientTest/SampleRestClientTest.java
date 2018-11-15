@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.restClientTest;
 
 import com.example.demo.TimeService;
 import com.example.demo.model.TimeDto;
@@ -15,6 +15,10 @@ import org.springframework.test.web.client.response.MockRestResponseCreators;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 
+/*
+ Test a web client service that has the RestClient injected.
+ The MockRestServiceServer will mock the responses that are expected from the RestClient
+ */
 @RunWith(SpringRunner.class)
 @RestClientTest({TimeService.class})
 @AutoConfigureWebClient(registerRestTemplate = true)
@@ -27,15 +31,18 @@ public class SampleRestClientTest {
     MockRestServiceServer server;
 
     @Test
-    public void test1(){
+    public void test1() {
+        // given
         server
                 .expect(requestTo("http://worldclockapi.com/api/json/utc/now"))
                 .andRespond(
                         MockRestResponseCreators.withSuccess("{\"currentDateTime\":\"myDate\"}", MediaType.APPLICATION_JSON)
                 );
 
+        // when
         TimeDto timeAsString = timeService.getTimeAsString();
 
+        // then
         assertThat(timeAsString).isEqualTo("myDate");
     }
 

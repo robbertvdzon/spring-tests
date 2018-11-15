@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.json;
 
+import com.example.demo.Customer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+/*
+  Test serialization and deserialization of a JSON object
+ */
 @RunWith(SpringRunner.class)
 @JsonTest
 public class SampleJsonTest {
@@ -26,7 +29,7 @@ public class SampleJsonTest {
         assertThat(customer.getAge()).isEqualTo(19);
         assertThat(customer.getName()).isEqualTo("Robbert");
     }
-    
+
     @Test
     public void testSerialize() throws IOException {
         Customer customer = new Customer("Robbert",19);
