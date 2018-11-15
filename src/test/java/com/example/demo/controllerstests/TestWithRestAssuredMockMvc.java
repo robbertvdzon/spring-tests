@@ -53,6 +53,5 @@ public class TestWithRestAssuredMockMvc {
         DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
         assertThat(response.statusCode()).isEqualTo(200);
         assertThatJson(parsedJson).field("time").isEqualTo("11:22:33");
-
     }
 }
