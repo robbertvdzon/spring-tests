@@ -19,6 +19,7 @@ import static com.toomuchcoding.jsonassert.JsonAssertion.assertThatJson;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 /*
  - Load complete spring environment, including the Servlet container
@@ -27,7 +28,7 @@ import static org.mockito.Mockito.when;
  - In your tests you can use RestAssuredMockMvc if you like to use the RestAssured syntax
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = RANDOM_PORT)
 public class TestWithRestAssuredMockMvc {
 
     @Autowired
